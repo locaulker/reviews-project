@@ -10,6 +10,9 @@ const App = () => {
   const prevPerson = () => {
     setIndex(currentIndex => {
       const newIndex = currentIndex - 1
+      if (newIndex < 0) {
+        return people.length - 1
+      }
       return newIndex
     })
   }
@@ -17,6 +20,9 @@ const App = () => {
   const nextPerson = () => {
     setIndex(currentIndex => {
       const newIndex = currentIndex + 1
+      if (newIndex > people.length - 1) {
+        return 0
+      }
       return newIndex
     })
   }
