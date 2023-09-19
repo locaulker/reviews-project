@@ -7,11 +7,21 @@ const App = () => {
   const [index, setIndex] = useState(0)
   const { name, job, image, text } = people[index]
 
+  const checkNumber = number => {
+    if (number > people.length - 1) {
+      return 0
+    }
+    if (number < 0) {
+      return people.length - 1
+    }
+    return number
+  }
+
   const prevPerson = () => {
     setIndex(currentIndex => {
       const newIndex = currentIndex - 1
 
-      return
+      return checkNumber(newIndex)
     })
   }
 
@@ -19,7 +29,7 @@ const App = () => {
     setIndex(currentIndex => {
       const newIndex = currentIndex + 1
 
-      return
+      return checkNumber(newIndex)
     })
   }
 
@@ -28,6 +38,8 @@ const App = () => {
     if (randomNumber === index) {
       randomNumber = index + 1
     }
+    setIndex(checkNumber(randomNumber))
+    console.log(index)
   }
 
   return (
